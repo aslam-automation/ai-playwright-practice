@@ -1,0 +1,24 @@
+{
+  "name": "ai-playwright-practice",
+  "version": "1.0.0",
+  "description": "AI-assisted end-to-end testing practice with Playwright, TypeScript and Playwright MCP",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:flaky-check": "playwright test --repeat-each=10",
+    "report": "playwright show-report"
+  },
+  "keywords": [
+    "playwright",
+    "typescript",
+    "test-automation",
+    "ai-testing",
+    "mcp"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}
