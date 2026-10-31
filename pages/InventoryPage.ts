@@ -5,12 +5,16 @@ export class InventoryPage {
   readonly title: Locator;
   readonly cartBadge: Locator;
   readonly cartLink: Locator;
+  readonly sortDropdown: Locator;
+  readonly inventoryItems: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.title = page.getByTestId('title');
     this.cartBadge = page.getByTestId('shopping-cart-badge');
     this.cartLink = page.getByTestId('shopping-cart-link');
+    this.sortDropdown = page.getByRole('combobox', { name: 'Sort products' });
+    this.inventoryItems = page.getByTestId('inventory-item');
   }
 
   /** Returns the inventory card that contains the given product name. */
@@ -35,5 +39,21 @@ export class InventoryPage {
 
   async openCart() {
     await this.cartLink.click();
+  }
+
+  async sortBy(option: 'az' | 'za' | 'lohi' | 'hilo') {
+    await this.sortDropdown.selectOption(option);
+  }
+
+  async productNames(): Promise<string[]> {
+    return this.inventoryItems
+      .getByTestId('inventory-item-name')
+      .allTextContents();
+  }
+
+  async productPrices(): Promise<string[]> {
+    return this.inventoryItems
+      .getByTestId('inventory-item-price')
+      .allTextContents();
   }
 }
